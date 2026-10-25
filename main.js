@@ -56,7 +56,7 @@ const localDoBotao = link => {
   return secao ? secao.id : 'outro';
 };
 
-const registrarClique = (botao, pagina) => {
+const registrarClique = (botao, pagina, link) => {
   fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABELA}`, {
     method: 'POST',
     keepalive: true, // garante o envio mesmo se a pessoa sair da página
@@ -65,11 +65,11 @@ const registrarClique = (botao, pagina) => {
       'Content-Type': 'application/json',
       'Prefer': 'return=minimal'
     },
-    body: JSON.stringify({ botao, pagina })
+    body: JSON.stringify({ botao, pagina, link })
   }).catch(() => {});
 };
 
 document.querySelectorAll('a[href*="wa.me"], a[href*="instagram.com"]').forEach(link => {
   const tipo = link.href.includes('wa.me') ? 'whatsapp' : 'instagram';
-  link.addEventListener('click', () => registrarClique(tipo, localDoBotao(link)));
+  link.addEventListener('click', () => registrarClique(tipo, localDoBotao(link), link.href));
 });

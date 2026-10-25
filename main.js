@@ -42,9 +42,9 @@ faqs.forEach(d => d.addEventListener('toggle', () => {
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Contagem de cliques nos botões de WhatsApp e Instagram (Supabase)
-const SUPABASE_URL = 'COLE_AQUI_A_PROJECT_URL'; // ex.: https://abcdefgh.supabase.co
+const SUPABASE_URL = 'https://hdayhqjcfvpbtxjlxkxb.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_xzGwmmvmCbPC6kyUGrEpyQ_euEk4SNp';
-const SUPABASE_TABELA = 'cliques';
+const SUPABASE_TABELA = 'cliques_site';
 
 // Nome do lugar do site onde o botão está (ex.: "inicio", "servicos", "rodape")
 const localDoBotao = link => {
@@ -57,7 +57,6 @@ const localDoBotao = link => {
 };
 
 const registrarClique = (botao, pagina) => {
-  if (SUPABASE_URL.startsWith('COLE_AQUI')) return;
   fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABELA}`, {
     method: 'POST',
     keepalive: true, // garante o envio mesmo se a pessoa sair da página
